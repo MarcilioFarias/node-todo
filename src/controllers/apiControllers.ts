@@ -18,6 +18,7 @@ export const add = async (req: Request, res: Response) => {
         done
     });
 
+    res.status(201);
     res.json({task: req.body});
     
 };
