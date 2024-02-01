@@ -51,3 +51,14 @@ export const remove = async (req: Request, res: Response) => {
 
     res.json({deleted: 'task was deleted!'});
 };
+
+export const uploadFile =async (req: Request, res: Response) => { 
+
+    
+
+    console.log('Arquivo: ', req.file);
+    console.log('Arquivos: ', req.files);
+
+    res.json({});
+
+}
