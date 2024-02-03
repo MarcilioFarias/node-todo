@@ -10,10 +10,25 @@ const storageConfig = diskStorage({
         let randomName = Math.floor(Math.random() * 999);
         cb(null, `${randomName+Date.now()}.jpg`);
     }
+    
 });
 
 const upload = multer({
-    storage: memoryStorage()
+    storage: memoryStorage(),
+    fileFilter: (req, file, cb)=> {
+        const allowedFile: string[] = ['image/jpg', 'image/png','image/jpeg'];
+
+        if(allowedFile.includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(null, false);
+        }
+
+        console.log('INFO FILE: ', file);
+    },
+    limits: {
+        fileSize: 2000000
+    }
 });
 
 export const routes = Router();
